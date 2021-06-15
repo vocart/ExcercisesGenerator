@@ -1,24 +1,13 @@
-
 import time
 import random
 from time import sleep
-
-class Training():
-	def __init__(self, duration, train_type):
-		self.duration = duration
-		self.train_type = train_type
-
-train1 = Training(15, 'karate')
-
-#print(train1.duration)
-
-arms_exc = {'30 pushups': 60}
 
 
 
 def start_motivation(time, train_type):
 	print( "Hello! \nWelcome to the trainig. You chose the {} minutes {} training. \
 Remember, be strong and never give up! When it hurts - it grows! \nSo let's start!".format(time, train_type))
+
 
 def warmup(time):
 	warmup_4min = ['wrist rolling', 'arms rolling', 'hips rolling', 'knees rolling', 'head rolling']
@@ -27,6 +16,7 @@ def warmup(time):
 	for a in range(len(warmup_4min)):
 		print(warmup_4min[a])
 		#sleep(1)
+
 
 def cardio(time):
 	print('\nCardio part starts, it will take you {} minutes to finish:\n'.format(time))
@@ -45,6 +35,7 @@ def cardio(time):
 			print(exc_value, 'minute \n')
 		else:
 			print(exc_value, 'minutes \n')
+
 
 def print_exc_value_plural_or_not(exc_value):
 	if exc_value == 1:
@@ -87,12 +78,12 @@ def excercises(time):
 		body_parts_number += 1
 
 
-
 def other_excercises(time, train_type):
 	if train_type == 'karate':
 		karate_exc(time)
 	else:
 		universal_exc(time)
+
 
 def karate_exc(time):
 	print('\nKarate part starts, it will take you {} minutes to finish:\n'.format(time))
@@ -106,7 +97,6 @@ def karate_exc(time):
 		karate_parts = [kihon, kihon]
 	else:
 		karate_parts = [kata, kihon, kihon, kihon, kata, kihon, kihon, kihon, ]
-
 
 	karate_parts_number = 0	
 	while exc_time > 0:
@@ -123,6 +113,7 @@ def karate_exc(time):
 
 		karate_parts_number += 1
 
+
 def universal_exc(time):
 	print('\nUniversal part starts, it will take you {} minutes to finish:\n'.format(time))
 	excercises(time)
@@ -131,20 +122,33 @@ def universal_exc(time):
 def end_training():
 	print(10*'#','\nCongratulations! You menaged to finish the trainig! I hope you enjoyed it, so see you soon!')
 
-def training(time, train_type):
-	start_motivation(time, train_type)
-	#sleep(1)
+
+def training_time_scheme(time):
+
 	if time == 15:
 		warmup_time = 4
 		cardio_time = 5
 		excercises_time = 3
 		other_time = 2
-
+		
 	elif time == 30:
 		warmup_time = 4
 		cardio_time = 6
 		excercises_time = 10
 		other_time = 10
+		
+	else:
+		print('There is no training for this duration of time')
+	
+	return [warmup_time, cardio_time, excercises_time, other_time]
+
+
+def training(time, train_type):
+	start_motivation(time, train_type)
+	#sleep(1)
+
+	train = training_time_scheme(time)
+	[warmup_time, cardio_time, excercises_time, other_time] = train
 
 	warmup(warmup_time)
 	#sleep(1)
@@ -157,5 +161,7 @@ def training(time, train_type):
 	
 	end_training()
 
+
+
 training(30, 'karate')
-training(30, 'lipa')
+training(15, 'jakiś_trening')
