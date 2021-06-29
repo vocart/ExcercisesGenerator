@@ -1,0 +1,31 @@
+{% extends 'generator/base.html' %}
+
+{% block content %}
+
+    <div id='header'>
+        <h1 class="title">
+            Training Generator
+        </h1>
+    </div>
+
+    <div id='subheader'>
+        <h2>
+            Generate your training by choosing a type and duration of the training. <br>Each training is generated randomly from a list of carefully selected excercises arranged in types.
+        </h2>
+    </div>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="Submit" name="sub" value="Choose values"/>
+    </form>
+
+    {% if submitbutton == "Choose values" %} 
+        <h3> You chose {{ train_type }} training that lasts {{ train_duration }} minutes.</h3>
+    {% endif %}
+
+    <form method="get" action="/train_generator">
+        <input type="submit" name="upload" class="btn btn-primary" value="Generate training" {% if submitbutton != "Choose values" %} disabled {% endif %} />
+    </form>
+
+{% endblock %}
