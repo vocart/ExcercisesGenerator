@@ -5,14 +5,25 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'generator/style.css' %}">
+    <link rel="stylesheet" type="text/javascript" href="{% static 'generator/style.js' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet"> 
     <meta charset="UTF-8">
     <title>Training Generator</title>
 </head>
 
 <body>
     <div id='content'>
+
+        <div id='header'>
+            Training Generator
+        </div>
+
         {% block content %}
         {% endblock %}
+        
     </div>
 </body>
 
