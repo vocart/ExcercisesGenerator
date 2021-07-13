@@ -5,7 +5,7 @@ TRAINING_TYPES = [
         ('KARATE', 'KARATE'),
         ('STANDARD', 'STANDARD'),
         ('CARDIO', 'CARDIO'),
-        ('SRETCHING', 'SRETCHING'),
+        ('STRETCHING', 'STRETCHING'),
 
         ]       
 
