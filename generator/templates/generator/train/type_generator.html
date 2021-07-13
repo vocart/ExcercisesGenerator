@@ -2,30 +2,42 @@
 
 {% block content %}
 
-    <div id='header'>
-        <h1 class="title">
-            Training Generator
-        </h1>
+
+    <div class='subheader'>
+        
+            Generate your training by choosing a type and duration of the training. <br>
+            Each training is generated randomly from a list of carefully selected excercises arranged in types.
+        
+    </div>
+    <!-- <div style='clear:both;'></div> -->
+
+
+    <div id='train_choice'>
+        <form action="" method="POST">
+            <div id='choices'>
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+
+            <div id='choose_values'>
+                <input type="Submit" name="sub" value="Choose values"/>
+            </div>
+        </form>
+
+        <!-- <div style='clear:both;'></div> -->
     </div>
 
-    <div id='subheader'>
-        <h2>
-            Generate your training by choosing a type and duration of the training. <br>Each training is generated randomly from a list of carefully selected excercises arranged in types.
-        </h2>
+    <div id='result'>
+        {% if submitbutton == "Choose values" %} 
+            You chose {{ train_type }} training that lasts {{ train_duration }} minutes.
+        {% endif %}
     </div>
-
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="Submit" name="sub" value="Choose values"/>
-    </form>
-
-    {% if submitbutton == "Choose values" %} 
-        <h3> You chose {{ train_type }} training that lasts {{ train_duration }} minutes.</h3>
-    {% endif %}
-
-    <form method="get" action="/train_generator">
-        <input type="submit" name="upload" class="btn btn-primary" value="Generate training" {% if submitbutton != "Choose values" %} disabled {% endif %} />
-    </form>
+    <div id='generate_trainig'>
+        <form method="get" action="/train_generator">
+            <input type="submit" name="upload" class="btn btn-primary" value="Generate training" {% if submitbutton != "Choose values" %} disabled {% endif %} />
+        </form>
+    </div>
+    <div style='clear:both;'></div>
+    
 
 {% endblock %}

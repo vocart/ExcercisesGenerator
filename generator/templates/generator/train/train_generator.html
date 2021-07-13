@@ -2,67 +2,91 @@
 
 {% block content %}
 
+    <div class='subheader'>
+        
+            You chose the {{ train_duration }} minutes {{ train_type }} training. <br>
+            Remember, be strong and never give up! When it hurts - it grows! <br><br>
+            So this is how your training will look like:
+        
+    </div>
+    <!-- <div style='clear:both;'></div> -->
 
-<h2>
-    Your generated trainig looks like this:
-</h2>
+    <div id='excercises'> 
 
-<h3>
-    Warmup will take you 4 minutes to finish:
-</h3>
+        <div class='excercise'>
+            <div class='excercise_title'>
+                
+                    Warmup - {{ warmup_time }} minutes:
+                
+            </div>
+            <div class='excercise_list'>
+                {% for exc in warmup_list %}
+                    <p>- {{exc}}</p>
+                {% endfor %}
+            </div>
+            
+        </div>
 
-<h4>
-    <ul>
-        <li>wrist rolling</li>
-        <li>arms rolling</li>
-        <li>hips rolling</li>
-        <li>knees rolling</li>
-        <li>head rolling</li>
-    </ul>
-</h4>
+        <div class='excercise'>
+            <div class='excercise_title'>
+                
+                    Cardio part - {{ cardio_time }} minutes:
+                
+            </div>
+            <div class='excercise_list'>
+                {% for exc in cardio_list %}
+                    <p>- {{ exc }}</p>
+                {% endfor %}
+            </div>
+        </div>
+       
+        <div class='excercise'>
+            <div class='excercise_title'>
+               
+                    Standard part - {{ excercises_time }} minutes:
+                
+            </div>
+            <div class='excercise_list'>
+                {% for exc in excercises_list %}
+                    <p>- {{ exc }}</p>
+                {% endfor %}
+            </div>
+        </div>
 
-<h3>
-    Cardio part will take you 5 minutes to finish:
-</h3>
+        <div class='excercise'>
+            <div class='excercise_title'>
+                {% if train_type == 'KARATE' %}
+                    Karate part - {{ other_time }} minutes:
+                {% else %}
+                    Other part - {{ other_time }} minutes:
+                {% endif %}
+            </div>
+            <div class='excercise_list'>
+                {% for exc in other_list %}
+                    <p>- {{ exc }}</p>
+                {% endfor %}
+            </div>
+        </div>
 
-<h4>
-    <ul>
-        <li>jumping jacks - 1 minute </li>
-        <li>knees up - 1 minute </li>
-        <li>jumping wide-narrow - 1 minute </li>
-        <li>knees up - 1 minute </li>
-        <li>jumping wide-narrow - 1 minute </li>
-    </ul>
-</h4>
+        {% if stretching_time != 0 %}
+        <div class='excercise'>
+            <div class='excercise_title'>
+                Stretching - {{ stretching_time }} minutes.
+            </div>
+        </div>
+        {% endif %}
 
+        <div style='clear:both;'></div>
+    </div>
+    
 
-<h3>
-    Standard excercises will take you 4 minutes to finish:</h3>
-</h3>
+    <div id='start_training'>
+        <form method="get" action="/countdown">
+            <button type="submit">START TRAINING!</button>
+        </form>
+        <div style='clear:both;'></div>
+    </div>
+    <div style='clear:both;'></div>
 
-
-<h4>
-    <ul>
-        <li>50 Crunches - 2 minutes </li>
-        <li>20 (side) leg extension - 1 minute </li>
-    </ul>
-</h4>
-
-
-<h3>
-    Universal part will take you 2 minutes to finish:
-</h3>
-
-
-<h4>
-    <ul>
-        <li>50 Lying Floor Leg Raise - 2 minutes </li>
-    </ul>
-</h4>
-
-
-<form method="get" action="..">
-    <button type="submit">START TRAINING!</button>
-</form>
 
 {% endblock %}
